@@ -18,7 +18,6 @@ public class Principal {
 				int num[] = new int[numeros];
 				for (int x = 0; x < num.length; x++) {
 					num[x] = gerar.nextInt(numeros);
-					System.out.println(num[x]);
 				}
 //-------------------------------------------------------------------------------------------------------------------------------------------//				
 				//MAIOR, E MENOR NÚMERO//
@@ -138,6 +137,12 @@ public class Principal {
 				System.out.println("A variância é: "+ numerador / (num.length - 1));
 				System.out.println("------------------------------------------------------------------");
 				System.out.println("O desvio padrão é: "+ Math.sqrt(numerador / (num.length - 1)));
+//-------------------------------------------------------------------------------------------------------------------------------------------//				
+				//EXIBIÇÃO DO VETOR COM OS NÚMEROS//
+				System.out.println("------------------------------------------------------------------");
+				System.out.println("Os números aleatórios gerados foram:");
+				for (int x = 0; x < num.length; x++)
+					System.out.println(num[x]);
 //-------------------------------------------------------------------------------------------------------------------------------------------//				
 				//REINICIAR OU ENCERRAR PROGRAMA//
 				System.out.println("------------------------------------------------------------------");
