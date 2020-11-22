@@ -1,96 +1,159 @@
-import java.util.Locale;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Principal {
-
+	//-------------------------------------------------------------------------------------------------------------------------------------------//
+	//MENU PRINCIPAL//
 	public static void main(String[] args) {
-		Scanner digitar = new Scanner(System.in);
-		digitar.useLocale(Locale.ENGLISH);
-		System.out.println("Digite o exercício a ser feito: 1 / 2 / 3"); //Escolher exercício a ser visto
-		int exercicio = digitar.nextInt();
-		if (exercicio == 1) { //EXERCÍCIO 1
-			System.out.println("Informe sua altura (use ponto para digitar 'números quebrados' - para tudo o que lhe for pedido a partir de agora - por exemplo 1.80).");
-			double h = digitar.nextDouble();
-			System.out.println("Informe seu peso.");
-			double peso = digitar.nextDouble();
-			System.out.println("Informe seu sexo (Masculino / Feminino).");
-			String sexo = digitar.next();
-			System.out.println("Altura: "+h+" / Peso: "+peso+"Kg / Sexo: "+sexo);
-			if (sexo.equals("Masculino")) {
-				double peso_ideal = (72.7 * h) - 58;
-				System.out.println("O peso ideal para você é: "+peso_ideal+"Kg");
-				if (peso > peso_ideal) 
-					System.out.println("O seu peso está acima do ideal para você.");
-				else if (peso < peso_ideal)
-					System.out.println("O seu peso está abaixo do ideal para você.");
-				else
-					System.out.println("O seu peso é o ideal para você.");
-			}
+		Scanner digite = new Scanner(System.in);
+		Random gerar = new Random();
+		boolean rodando = true;
+		while (rodando) {
+			System.out.println("------------------------------------------------------------------");
+			System.out.println("Digite a quantidade de números aleatórios desejados (de 1 a 5000 números):");
+			int numeros = digite.nextInt();
+			if (numeros <= 0 || numeros > 5000) 
+				System.out.println("O número informado não é válido, por favor digite novamente outro número.");
 			else {
-				double peso_ideal = (62.1 * h) - 44.7;
-				System.out.println("O peso ideal para você é: "+peso_ideal+"Kg");
-				if (peso > peso_ideal) 
-					System.out.println("O seu peso está acima do ideal para você.");
-				else if (peso < peso_ideal)
-					System.out.println("O seu peso está abaixo do ideal para você.");
-				else
-					System.out.println("O seu peso é o ideal para você.");
-			}
-		}
-		else if (exercicio == 2) { //EXERCÍCIO 2
-			System.out.println("Colaborador digite seu salário:");
-			double salario = digitar.nextDouble();
-			if (salario + salario * 0.2 <= 280) {
-					System.out.println("Salário antes do reajuste R$"+salario);
-					System.out.println("Aumento de 20%");
-					System.out.println("O valor do aumento é de R$"+salario*0.2);
-					System.out.println("O salário atual é R$:"+(salario+salario*0.2));
-			}
-			else if (salario >= 280 && salario <= 700) {
-				System.out.println("Salário antes do reajuste R$"+salario);
-				System.out.println("Aumento de 15%");
-				System.out.println("O valor do aumento é de R$"+salario*0.15);
-				System.out.println("O salário atual é R$:"+(salario+salario*0.15));
-			}
-			else if (salario > 700 && salario <= 1500) {
-				System.out.println("Salário antes do reajuste R$"+salario);
-				System.out.println("Aumento de 10%");
-				System.out.println("O valor do aumento é de R$"+salario*0.1);
-				System.out.println("O salário atual é R$:"+(salario+salario*0.1));
-			}
-			else {
-				System.out.println("Salário antes do reajuste R$"+salario);
-				System.out.println("Aumento de 5%");
-				System.out.println("O valor do aumento é de R$"+salario*0.05);
-				System.out.println("O salário atual é R$:"+(salario+salario*0.05));
-			}
-		}
-			else { //EXERCÍCIO 3
-				System.out.println("Informe o valor do saque - somente valores inteiros por favor - de mínimo R$10 e máximo de R$600.");
-				int saque = digitar.nextInt();
-				if (saque >= 10 && saque <= 600) {
-					int aux;
-					if (saque >= 100) {
-						System.out.println(saque / 100+" nota(s) de R$100");
-						aux = (saque / 100) * 100;
-						saque = saque - aux;
-					}
-					System.out.println(saque / 50 +" nota(s) de R$50");
-					aux = (saque / 50) * 50;
-					saque = saque - aux;
-					System.out.println(saque / 10 +" nota(s) de R$10");
-					aux = (saque / 10) * 10;
-					saque = saque - aux;
-					System.out.println(saque / 5 +" nota(s) de R$5");
-					aux = (saque / 5) * 5;
-					saque = saque - aux;
-					System.out.println(saque+" nota(s) de R$1");
+				int num[] = new int[numeros];
+				for (int x = 0; x < num.length; x++) {
+					num[x] = gerar.nextInt(numeros);
+					System.out.println(num[x]);
 				}
-				else
-					System.out.println("Por favor digite uma quantia dentro do limite proposto.");
+//-------------------------------------------------------------------------------------------------------------------------------------------//				
+				//MAIOR, E MENOR NÚMERO//
+				boolean primeiro = true; 
+				int maior_num, menor_num;
+				maior_num = 0;
+				menor_num = 0;
+				for (int x = 0; x < num.length; x++) {
+					if (primeiro) { 
+						primeiro = false;
+						maior_num = num[x];
+						menor_num = num[x];
+					}else {
+						if (num[x] > maior_num) 
+							maior_num = num[x];
+						else if (num[x] < menor_num)
+							menor_num = num[x];
+					}}
+				System.out.println("------------------------------------------------------------------");
+				System.out.println("O maior número é:" + maior_num);
+				System.out.println("O menor número é:" + menor_num);
+				System.out.println("------------------------------------------------------------------");
+				System.out.println("A lista dos números pares é:");
+//-------------------------------------------------------------------------------------------------------------------------------------------//
+				//LISTA DOS NÚMEROS PARES, ÍMPARES, PRIMOS E SOMA//
+				for (int x = 0; x < num.length; x++) { 
+					if (num[x] % 2 == 0)
+						System.out.println(num[x]);
+				}
+				System.out.println("------------------------------------------------------------------");
+				System.out.println("A lista dos números ímpares é:");
+				for (int x = 0; x < num.length; x++) {
+					if (num[x] % 2 == 1)
+						System.out.println(num[x]);
+				}
+				System.out.println("------------------------------------------------------------------");
+				System.out.println("A lista dos números primos é:");
+				int divisores;
+				for (int x = 0; x < num.length; x++) {
+					divisores = 0;
+					for (int y = 1; y <= num.length; y++) {
+						if (num[x] % y == 0) 
+							divisores++;
+					}
+					if (divisores <= 2)
+						System.out.println(num[x]);
+					}
+				int soma;
+				soma = 0;
+				for (int x = 0; x < num.length; x++) {
+					soma = soma + num[x];
+				}
+				System.out.println("------------------------------------------------------------------");
+				System.out.println("A soma de todos os números é: "+soma);
+//-------------------------------------------------------------------------------------------------------------------------------------------//				
+				//MÉDIA, MEDIANA E MODA//
+				double numerador, media; 
+				numerador = 0;
+				media = 0;
+				for (int x = 0; x < num.length; x++ ) {
+					numerador = numerador + num[x];
+				}
+				media = numerador / num.length;
+				System.out.println("------------------------------------------------------------------");
+				System.out.println("A média é: "+media);
+				if (num.length % 2 == 0) {
+					double mediana;
+					mediana = (double)((num[(num.length / 2) - 1] + num[num.length / 2]) / 2);
+					System.out.println("------------------------------------------------------------------");
+					System.out.println("A mediana é: "+(double)mediana);
+				}else {
+					System.out.println("------------------------------------------------------------------");
+					System.out.println("A mediana é: "+(num[num.length / 2]));	
+				}
+				boolean primeira = true, multi_modal = false;
+				int aux = 0, conta_moda = 0, moda = 0;
+				for (int x = 0; x < num.length; x++) {
+					aux = 0;
+					for (int y = 0; y < num.length; y++) {
+						if (num[x] == num[y]) 
+							aux++;
+					}
+					if (primeira) {
+						primeira = false;
+						conta_moda = aux;
+						moda = num[x];
+					}else {
+						if (aux > conta_moda) {
+							conta_moda = aux;
+							moda = num[x];
+						}else if(aux == conta_moda)
+							multi_modal = true;
+					}
+				}
+				System.out.println("------------------------------------------------------------------");
+				System.out.println("A moda é: ");
+				int vezes_moda;
+				if (multi_modal) {
+					for (int x = 0; x < num.length; x++) {
+						vezes_moda = 0;
+						for (int y = 0; y < num.length; y++) {
+							if (num[x] == num[y])
+								vezes_moda++;
+						}
+						if (vezes_moda == conta_moda)
+							System.out.println(num[x]);
+					}
+				}else
+					System.out.println(moda);
+//-------------------------------------------------------------------------------------------------------------------------------------------//				
+				//VARIÂNCIA E DESVIO PADRÃO//
+				numerador = 0;
+				for (int x = 0; x < num.length; x++) {
+					numerador = numerador + ((num[x] - media) * (num[x] - media));
+				}
+				System.out.println("------------------------------------------------------------------");
+				System.out.println("A variância é: "+ numerador / (num.length - 1));
+				System.out.println("------------------------------------------------------------------");
+				System.out.println("O desvio padrão é: "+ Math.sqrt(numerador / (num.length - 1)));
+//-------------------------------------------------------------------------------------------------------------------------------------------//				
+				//REINICIAR OU ENCERRAR PROGRAMA//
+				System.out.println("------------------------------------------------------------------");
+				System.out.println("Deseja realizar o processo novamente com outra quantidade de números?");
+				System.out.println("Para 'Sim', digite 'S', para 'Não', digite 'N'.");
+				String sim_nao = digite.next();
+				if (sim_nao.equals("N")) {
+					System.out.println("Ok, encerrando programa...");
+					rodando = false;	
+				}else
+					System.out.println("Muito bem, retomando ao começo!");
+			}
 		}
-	}		
-}
+	}	
+}		
+
 
 
 
