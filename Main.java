@@ -1,167 +1,124 @@
-import java.util.Scanner;
+//CLASSE MAIN
 
 public class Main {
 	public static void main(String[] args) {
-		Piramide piramide = new Piramide();
-		Scanner text = new Scanner(System.in);
-		float h;
-		float ab;
-		int tipo;
-		System.out.println("Digite o valor de 'h' em metros:");
-		h = text.nextFloat();
-		piramide.setH(h);
-		System.out.println("Digite o valor de 'ab' em metros:");
-		ab = text.nextFloat();
-		piramide.setAb(ab);
-		System.out.println("Informe o tipo de tinta a ser usado:");
-		System.out.println("1 - R$129,90");
-		System.out.println("2 - R$258,98");
-		System.out.println("3 - R$344,34");
-		tipo = text.nextInt();
-		piramide.setTipo(tipo);
-		piramide.setAreaDaBase();
-		piramide.setA1();
-		piramide.setAreaTriangulo();
-		piramide.setAreaTotal();
-		piramide.setLitros();
-		piramide.setLatas();
-		piramide.setPreco();
-		piramide.setVolume();
-		System.out.println("ab: "+piramide.getAb()+"m.");
-		System.out.println("h: "+piramide.getH()+"m.");
-		System.out.println("a1: "+piramide.getA1()+"m.");
-		System.out.println("Área do Triângulo: "+piramide.getAreaTriangulo()+" metros quadrados.");
-		System.out.println("Área da Base: "+piramide.getAreaDaBase()+" metros quadrados.");
-		System.out.println("Área Total: "+piramide.getAreaTotal()+" metros quadrados.");
-		System.out.println("Tipo de Tinta: "+piramide.getTipo()+".");
-		System.out.println("Litros: "+piramide.getLitros()+"L.");
-		System.out.println("Latas: "+piramide.getLatas()+" latas.");
-		System.out.println("Preço: R$"+piramide.getPreco()+".");
-		System.out.println("Volume: "+piramide.getVolume()+" metros cúbicos.");
-		text.close();
+		float z = 8;
+		float r = 6;
+		int tipo_de_tinta = 1;
+		Cone cone_dados = new Cone(z, r, tipo_de_tinta);
+		System.out.println(cone_dados);
 	}	
 }
 
-public class Piramide {
-	private float ab = 0;
-	private float h = 0;
-	private float a1 = 0;
-	private float areatriangulo = 0;
-	private float areadabase = 0;
-	private float areatotal = 0;
-	private int tipo = 0;
-	private float litros = 0;
-	private float latas = 0;
-	private float custo = 0;
-	private float preco = 0;
-	private float volume = 0;
+//CLASSE CONE
+
+public class Cone {
+	private float z = 0;
+	private float r = 0;
+	private int tipo_de_tinta = 0;
 	
-//----------------------------------------------------------------------------------------------------------------------------------------------//
-	//SETs//
-	public void setAb(float ab) {
-		if (ab > 0)
-			this.ab = ab;
+	public Cone(float z, float r, int tipo_de_tinta) {
+		setZ(z);
+		setR(r);
+		setTipo_de_tinta(tipo_de_tinta);
+		geratriz();
+		area_do_fundo();
+		area_lateral();
+		area_total();
+		litros();
+		latas();
+		preco_total();
 	}
 	
-	public void setH(float h) {
-		if ((float)h > 0)
-			this.h = h;
+	public float getZ() {
+		return z;
 	}
 	
-	public void setTipo(int tipo) {
-		if (tipo > 0) {
-			if (tipo == 1) {
-				this.tipo = 1;
-				custo = (float)127.90;
-			}
-			else if (tipo == 2) {
-				this.tipo = 2;
-				custo = (float)282.98;
-			}
-			else {
-				this.tipo = 3;
-				custo = (float)344.34;
-			}
-		}
+	public void setZ(float z) {
+		if (z > 0)	
+			this.z = z;
 	}
 	
-	public void setA1() {
-		a1 = (float)Math.sqrt((h * h) + (ab * ab));
+	public float getR() {
+		return r;
 	}
 	
-	public void setAreaTriangulo() {
-		areatriangulo = (float)((ab * 2) * a1) / 2;
+	public void setR(float r) {
+		if (r > 0)
+			this.r = r;
 	}
 	
-	public void setAreaDaBase() {
-		areadabase = (float)(ab*2) * (ab*2);
+	public int getTipo_de_tinta() {
+		return tipo_de_tinta;
 	}
 	
-	public void setAreaTotal() {
-		areatotal = (float)(areatriangulo * 4) + areadabase;
+	public void setTipo_de_tinta(int tipo_de_tinta) {
+		if (tipo_de_tinta > 0 && tipo_de_tinta < 4)
+			this.tipo_de_tinta = tipo_de_tinta;
 	}
 	
-	public void setLitros() {
-		litros = (float)(areatotal / 4.76);
+	public float geratriz() {
+		return (float)(Math.sqrt((z * z) + (r * r)));
 	}
 	
-	public void setLatas() {
-		latas = (int)(litros / 18) + 1;
+	public float area_do_fundo() {
+		return (float)(3.14 * (r * r));
 	}
 	
-	public void setPreco() {
-		preco = (float)(latas * custo);
+	public float area_lateral() {
+		return (float)(3.14 * r * geratriz());
 	}
 	
-	public void setVolume() {
-		volume = (float)(areadabase / 3) * h;
+	public float area_total() {
+		return (float)(3.14 * r * (r + geratriz()));
 	}
-//----------------------------------------------------------------------------------------------------------------------------------------------//
-	//GETs//
-	public float getAb() {
-		return ab;
-	}
-	
-	public float getH() {
-		return h;
+
+	public float litros() {
+		return (float)(3.45 * area_total());
 	}
 	
-	public float getA1() {
-		return a1;
+	public int latas() {
+		return (int)((litros() / 18) + 1);
 	}
 	
-	public float getAreaTriangulo() {
-		return areatriangulo;
+	public float preco_total() {
+		if (tipo_de_tinta == 1)
+			return (float)(latas() * 238.90);
+		else if (tipo_de_tinta == 2) 
+			return (float)(latas() * 467.98); 
+		else
+			return (float)(latas() * 758.34);
+	}
+
+	public String toString() {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Cone [z=");
+		builder.append(z);
+		builder.append(", r=");
+		builder.append(r);
+		builder.append(", tipo_de_tinta=");
+		builder.append(tipo_de_tinta);
+		builder.append(", geratriz()=");
+		builder.append(geratriz());
+		builder.append(", area_do_fundo()=");
+		builder.append(area_do_fundo());
+		builder.append(", area_lateral()=");
+		builder.append(area_lateral());
+		builder.append(", area_total()=");
+		builder.append(area_total());
+		builder.append(", litros()=");
+		builder.append(litros());
+		builder.append(", latas()=");
+		builder.append(latas());
+		builder.append(", preco_total()=");
+		builder.append(preco_total());
+		builder.append("]");
+		return builder.toString();
 	}
 	
-	public float getAreaDaBase() {
-		return areadabase;
-	}
-	
-	public float getAreaTotal() {
-		return areatotal;
-	}
-	
-	public int getTipo() { 
-		return tipo;
-	}	
-	
-	public float getLitros() {
-		return litros;
-	}
-	
-	public int getLatas() {
-		return (int)latas;
-	}
-	
-	public float getPreco() {
-		return preco;
-	}
-	
-	public float getVolume() {
-		return volume;
-	}
 }
+
+
 
 
 
