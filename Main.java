@@ -115,7 +115,6 @@ public class Cone {
 		builder.append("]");
 		return builder.toString();
 	}
-	
 }
 
 
