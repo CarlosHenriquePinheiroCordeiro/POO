@@ -1,14 +1,17 @@
 public class Energia {
 
 	private boolean energia;
+
+	public Energia(boolean corrente) {
+		setEnergia(corrente);
+	}
 	
 	public boolean getEnergia() {
 		return energia;
 	}
 
 	public void setEnergia(boolean corrente) {
-		if (corrente)
-			this.energia = corrente;
+		this.energia = corrente;
 	}
 
 	public String toString() {

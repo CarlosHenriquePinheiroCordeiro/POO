@@ -6,6 +6,11 @@ public class Computador extends Eletronico {
 	private List<Gpu> lgpus = new ArrayList<Gpu>();
 	private String marca;
 	
+	public Computador(String marca, Energia energia) {
+		super(energia);
+		setMarca(marca);
+	}
+	
 	public boolean addGpu(Gpu gpu) {
 		return lgpus.add(gpu);
 	}
@@ -31,6 +36,4 @@ public class Computador extends Eletronico {
 		return builder.toString();
 	}
 
-	
-	
 }

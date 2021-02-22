@@ -2,6 +2,10 @@ public class Gpu {
 
 	private String marca;
 
+	public Gpu (String marca) {
+		setMarca(marca);
+	}
+	
 	public String getMarca() {
 		return marca;
 	}

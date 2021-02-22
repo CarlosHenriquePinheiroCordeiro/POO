@@ -2,8 +2,8 @@ public class Eletronico {
 	
 	private boolean ligado;
 
-	public void desligar(Energia energia) {
-		
+	public Eletronico(Energia energia) {
+		ligar(energia);
 	}
 	
 	public void ligar(Energia energia) {
@@ -16,8 +16,7 @@ public class Eletronico {
 	}
 
 	public void setLigado(boolean ligado) {
-		if (ligado)
-			this.ligado = ligado;
+		this.ligado = ligado;
 	}
 
 	public String toString() {

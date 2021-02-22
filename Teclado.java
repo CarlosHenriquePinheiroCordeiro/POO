@@ -5,6 +5,11 @@ public class Teclado extends Eletronico {
 	private List<Tecla> teclas = new ArrayList<Tecla>();
 	private String marca;
 
+	public Teclado(String marca, Energia energia) {
+		super(energia);
+		setMarca(marca);
+	}
+	
 	public boolean addTecla(String simbolo) {
 		Tecla tecla = new Tecla(simbolo);
 		return teclas.add(tecla); 
