@@ -1,25 +1,13 @@
-public class Energia {
+public abstract class Energia {
 
-	private boolean energia;
-
-	public Energia(boolean corrente) {
-		setEnergia(corrente);
-	}
+	private static boolean energia = false;
 	
-	public boolean getEnergia() {
+	public static boolean getEnergia() {
 		return energia;
 	}
 
-	public void setEnergia(boolean corrente) {
-		this.energia = corrente;
-	}
-
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Energia [energia=");
-		builder.append(energia);
-		builder.append("]");
-		return builder.toString();
+	public static void setEnergia(boolean energia) {
+		Energia.energia = energia;
 	}
 	
 }

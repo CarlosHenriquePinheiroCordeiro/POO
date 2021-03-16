@@ -1,16 +1,9 @@
-public class Eletronico {
+public abstract class Eletronico {
 	
 	private boolean ligado;
+	
+	public abstract void ligar(boolean energia);
 
-	public Eletronico(Energia energia) {
-		ligar(energia);
-	}
-	
-	public void ligar(Energia energia) {
-		if (energia.getEnergia())
-			setLigado(energia.getEnergia());
-	}
-	
 	public boolean getLigado() {
 		return ligado;
 	}
@@ -18,7 +11,7 @@ public class Eletronico {
 	public void setLigado(boolean ligado) {
 		this.ligado = ligado;
 	}
-
+	
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Eletronico [ligado=");

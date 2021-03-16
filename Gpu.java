@@ -1,7 +1,11 @@
-public class Gpu {
+public final class Gpu {
 
 	private String marca;
 
+	public Gpu() {
+		
+	}
+	
 	public Gpu (String marca) {
 		setMarca(marca);
 	}
